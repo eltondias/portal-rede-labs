@@ -1,0 +1,258 @@
+<div class="home">
+        <div class="home_background"></div>
+        <div class="background_image background_city" style="background-image:url(./assets/images/labs.jpg); opacity: 0.1"></div>
+        <div class="cloud cloud_1"><img src="./assets/images/cloud.png" alt=""></div>
+        <div class="cloud cloud_2"><img src="./assets/images/cloud.png" alt=""></div>
+        <div class="cloud cloud_3"><img src="./assets/images/cloud_full.png" alt=""></div>
+        <div class="cloud cloud_4"><img src="./assets/images/cloud.png" alt=""></div>
+        <div class="home_container">
+            <div class="container">
+          
+                <div class="row" *ngIf="laboratorio">
+                         
+				
+                                <div class="col-sm-4">
+                                        <div class="card">
+                                            <img  *ngIf="laboratorio.logotipo" src="data:{{ laboratorio.logotipoContentType }};base64,{{ laboratorio.logotipo }}" class="card-img-top" />
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ laboratorio.nome }} - {{ laboratorio.sigla }}</h5>
+                                            </div>
+                                            <ul class="list-group list-group-flush" *ngIf="coordenador" >
+                                                <li class="list-group-item">
+                                                    {{ coordenador.userFirstName }} {{ coordenador.userLastName }} (coordenador) -
+                                                    <a href="{{ coordenador.cnpqLink }}">Lattes Cnpq</a>
+                                                </li>
+                                                <li class="list-group-item">{{ coordenador.email }}</li>
+                                            </ul>
+                                        </div>
+                              
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <agm-map
+                                                    *ngIf="marker"
+                                                    style="width: 100%; height: 300px;"
+                                                    [latitude]="marker.lat"
+                                                    [longitude]="marker.lng"
+                                                    [zoom]="zoom"
+                                                    [zoomControl]="true"
+                                                >
+                                                    <agm-marker
+                                                        [latitude]="marker.lat"
+                                                        [longitude]="marker.lng"
+                                                        [markerDraggable]="true"
+                                                        (dragEnd)="markerDragEnd($event)"
+                                                    ></agm-marker>
+                                                </agm-map>
+                              
+                                                <p class="card-text p-2" *ngIf="laboratorio.endereco">
+                                                    {{ laboratorio.endereco.logradouro }}, {{ laboratorio.endereco.numero }}, {{ laboratorio.endereco.bairro }} -
+                                                    {{ laboratorio.endereco.cep }}
+                                                </p>
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">CNPJ: {{ laboratorio.cnpj }}</li>
+                                                <li class="list-group-item">
+                                                    <a href="{{ laboratorio.website }}">{{ laboratorio.website }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 p-2" style="background-color: white">
+                                        <ngb-tabset type="pills" [justify]="'justified'">
+                                            <ngb-tab title="Sobre">
+                                                <ng-template ngbTabContent>
+                                                    <div class="p-2">
+                                                        <div class="p-2" style="max-height: 200px; overflow-y: auto">
+                                                            <p class="lead">{{ laboratorio.descricao }}</p>
+                                                        </div>
+                              
+                                                        <div class="card mt-4" *ngIf="laboratorio.ensaios">
+                                                            <div class="card-header text-primary"><h4>Serviços oferecidos</h4></div>
+                                                            <div class="card-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col"></th>
+                                                                            <th scope="col">Serviço</th>
+                                                                            <th scope="col">Descrição</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let servico of laboratorio.ensaios">
+                                                                            <td><img width="24px" src="./assets/images/check.png" /></td>
+                                                                            <td>{{ servico.nome }}</td>
+                                                                            <td>{{ servico.descricao }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                              
+                                                        <!--Caracteristicas-->
+                                                        <div class="card mt-4" *ngIf="laboratorio.caracterizacaoLaboratorio">
+                                                            <div class="card-header text-primary"><h4>Caracteristicas</h4></div>
+                                                            <div class="card-body">
+                                                                <div class="row my-3">
+                                                                    <div class="col-sm-12 col-md-4">
+                                                                        Pesquisa: {{ laboratorio.caracterizacaoLaboratorio.pesquisa ? 'Sim' : 'Não' }}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-4">
+                                                                        Especializado: {{ laboratorio.caracterizacaoLaboratorio.servicoEspecializado ? 'Sim' : 'Não' }}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-4">
+                                                                        Ensino: {{ laboratorio.caracterizacaoLaboratorio.ensino ? 'Sim' : 'Não' }}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-4">
+                                                                        Extensao: {{ laboratorio.caracterizacaoLaboratorio.extensao ? 'Sim' : 'Não' }}
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-md-4">
+                                                                        P ED: {{ laboratorio.caracterizacaoLaboratorio.pED ? 'Sim' : 'Não' }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Fim Caracteristicas-->
+                                                        <!-- Áreas de Conhecimento-->
+                                                        <div class="card mt-4" *ngIf="laboratorio.areasConhecimentos">
+                                                            <div class="card-header text-primary"><h4>Áreas de Conhecimento</h4></div>
+                                                            <div class="card-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Área de conhecimento</th>
+                                                                            <th scope="col">Sub Áreas Conhecimento</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let areasConhecimento of laboratorio.areasConhecimentos">
+                                                                            <td>{{ areasConhecimento.areaconhecimentoNome }}</td>
+                                                                            <td>{{ areasConhecimento.nome }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!--Fim  Áreas de Conhecimento-->
+                                                    </div>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <ngb-tab>
+                                                <ng-template ngbTabTitle> Contatos </ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <div class="p-2">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 p-2">
+                                                                <div class="card">
+                                                                    <div class="card-header text-primary">Emails</div>
+                                                                    <ul class="list-group list-group-flush">
+                                                                        <li class="list-group-item" *ngFor="let email of laboratorio.emails">{{ email.endereco }}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                              
+                                                        <div class="row">
+                                                            <div class="col-sm-12 p-2">
+                                                                <div class="card">
+                                                                    <div class="card-header text-primary">Telefones</div>
+                                                                    <ul class="list-group list-group-flush">
+                                                                        <li class="list-group-item" *ngFor="let telefone of laboratorio.telefones">
+                                                                            ({{ telefone.codigoArea }}) {{ telefone.numero }}
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                              
+                                                        <div class="row">
+                                                            <div class="col-sm-12 p-2">
+                                                                <div class="card">
+                                                                    <div class="card-header text-primary">Redes sociais</div>
+                                                                    <ul class="list-group list-group-flush">
+                                                                        <li class="list-group-item" *ngFor="let redesocial of laboratorio.redesocials">
+                                                                            <a href="{{ redesocial.url }}"> {{ redesocial.nome }}</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngb-tab>
+                              
+                                            <ngb-tab title="Membros">
+                                                <ng-template ngbTabContent>
+                                                    <div class="p-2">
+                                                        <div class="card mt-4" *ngIf="laboratorio.membros">
+                                                            <div class="card-header text-primary"><h4>Nossa equipe</h4></div>
+                                                            <div class="card-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Nome</th>
+                                                                            <th scope="col">Cargo</th>
+                                                                            <th scope="col">Email</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let membro of laboratorio.membros">
+                                                                            <td>{{ membro.membro.nome }}</td>
+                                                                            <td>{{ membro.cargo }}</td>
+                                                                            <td>{{ membro.membro.email }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngb-tab>
+                              
+                                            <ngb-tab title="Certificações">
+                                                <ng-template ngbTabContent>
+                                                    <div class="p-2">
+                                                        <div class="card mt-4" *ngIf="laboratorio.certificacaos">
+                                                            <div class="card-header text-primary"><h4>Certificações</h4></div>
+                                                            <div class="card-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Certificado</th>
+                                                                            <th scope="col">Descrição</th>
+                                                                            <th scope="col">Certificador</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let certificado of laboratorio.certificacaos">
+                                                                            <td>{{ certificado.nome }}</td>
+                                                                            <td>{{ certificado.descricao }}</td>
+                                                                            <td>{{ certificado.certificadoraNome }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </ngb-tab>
+                                        </ngb-tabset>
+                                    </div>
+                            
+            
+                            
+             
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+
+ 
+
+
+
+

@@ -1,0 +1,209 @@
+<div class="home">
+    <div class="home_background"></div>
+    <div class="background_image background_city" style="background-image:url(./assets/images/labs.jpg); opacity: 0.1">
+    </div>
+    <div class="cloud cloud_1"><img src="./assets/images/cloud.png" alt=""></div>
+    <div class="cloud cloud_2"><img src="./assets/images/cloud.png" alt=""></div>
+    <div class="cloud cloud_3"><img src="./assets/images/cloud_full.png" alt=""></div>
+    <div class="cloud cloud_4"><img src="./assets/images/cloud.png" alt=""></div>
+    <div class="home_container">
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <div class="home_content text-center p-4">
+                        <div class="home_title ">
+                            Registrar nova conta
+                        </div>
+                        <div class="home_text">
+                            Com sua conta você poderá cadastrar laboratório(s) que estiver vinculado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+
+                    <div class="alert alert-success" *ngIf="success">
+                        <strong>Conta criada com sucesso</strong> Por favor verifique seu e-mail para realizar a
+                        ativação.
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="error">
+                        <strong> Falha ao criar a conta </strong> Por favor tente novamente.
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="errorCpfExists">
+                        <strong>CPF já está em uso</strong> Por favor informe outro.
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="errorUserExists">
+                        <strong>Esse login já está sendo usado</strong> Por favor informe outro.
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="errorEmailExists">
+                        <strong>Este e-mail já está sendo usado</strong> Por favor informe outro.
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="doNotMatch">
+                        A senha e a confirmação de senha não são iguais!
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 100%;">
+                    <div class="card-body">
+            <form name="form" role="form" (ngSubmit)="register()" #registerForm="ngForm" *ngIf="!success">
+                <div class="row">
+        
+                    <div class="col-sm">
+
+
+                        <div class="form-group">
+                            <!-- <label class="form-control-label" for="firstname">Nome</label> -->
+                            <input type="text" class="form-control" [(ngModel)]="registerAccount.firstName"
+                                id="firstname" name="firstname" #firstname="ngModel" placeholder="Nome" required
+                                minlength="1" maxlength="50">
+                            <div *ngIf="firstname.dirty && firstname.invalid">
+                                <small class="form-text text-danger" *ngIf="firstname.errors.required">
+                                    O nome é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="firstname.errors.minlength">
+                                    Seu nome deve ter mais que 1 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="firstname.errors.maxlength">
+                                    Seu nome deve ter menos de 50 caracteres.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- <label class="form-control-label" for="lastaname">Sobrenome</label> -->
+                            <input type="text" class="form-control" [(ngModel)]="registerAccount.lastName"
+                                id="lastaname" name="lastaname" #lastaname="ngModel" placeholder="Sobrenome" required
+                                minlength="1" maxlength="50">
+                            <div *ngIf="lastaname.dirty && lastaname.invalid">
+                                <small class="form-text text-danger" *ngIf="lastaname.errors.required">
+                                    O Sobrenome é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="lastaname.errors.minlength">
+                                    Seu nome deve ter mais que 1 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="lastaname.errors.maxlength">
+                                    Seu nome deve ter menos de 50 caracteres.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- <label class="form-control-label" for="login">Nome de usuário</label> -->
+                            <input type="text" class="form-control" [(ngModel)]="registerAccount.login" id="login"
+                                name="login" #login="ngModel" placeholder="Nome de usuário" required minlength="1"
+                                maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+                            <div *ngIf="login.dirty && login.invalid">
+                                <small class="form-text text-danger" *ngIf="login.errors.required">
+                                    O Nome de usuário é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="login.errors.minlength">
+                                    Seu nome deve ter mais que 1 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="login.errors.maxlength">
+                                    Seu nome deve ter menos de 50 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="login.errors.pattern">
+                                    Seu nome de usuário pode conter apenas letras e números.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- <label class="form-control-label" for="cpf">Cpf</label> -->
+                            <input type="text" class="form-control" id="cpf" name="cpf" #cpf="ngModel" placeholder="Cpf"
+                                [(ngModel)]="registerAccount.cpf" maxlength=254 required mask="000.000.000-00">
+                            <div *ngIf="cpf.dirty && cpf.invalid">
+                                <small class="form-text text-danger" *ngIf="cpf.errors.required">
+                                    O Cpf é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="cpf.errors.invalid">
+                                    Seu cpf é inválido.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="cpf.errors.maxlength">
+                                    Seu CPF deve ter 11 caracteres.
+                                </small>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm">
+
+                        <div class="form-group">
+                            <!-- <label class="form-control-label" for="email">Email</label> -->
+                            <input type="email" class="form-control" id="email" name="email" #email="ngModel"
+                                placeholder="Email" [(ngModel)]="registerAccount.email" minlength=5 maxlength=254 email
+                                required>
+                            <div *ngIf="email.dirty && email.invalid">
+                                <small class="form-text text-danger" *ngIf="email.errors.required">
+                                    O Email é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="email.errors.invalid">
+                                    Seu Email é inválido.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="email.errors.minlength">
+                                    Seu Email deve ter pelo menos 5 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="email.errors.maxlength">
+                                    Seu Email deve ter menos de 100 caracteres.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label class="form-control-label" for="password">Senha</label> -->
+                            <input type="password" class="form-control" id="password" name="password"
+                                #password="ngModel" placeholder="Senha" [(ngModel)]="registerAccount.password"
+                                minlength=4 maxlength=50 required>
+                            <div *ngIf="password.dirty && password.invalid">
+                                <small class="form-text text-danger" *ngIf="password.errors.required">
+                                    A Senha é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="password.errors.minlength">
+                                    Sua Senha deve ter pelo menos 4 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="password.errors.maxlength">
+                                    Sua Senha deve ter menos de 50 caracteres.
+                                </small>
+                            </div>
+                            <!-- <jhi-password-strength-bar [passwordToCheck]="registerAccount.password"></jhi-password-strength-bar> -->
+                        </div>
+                        <div class="form-group mb-4">
+                            <!-- <label class="form-control-label" for="confirmPassword">Confirmação de senha</label> -->
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                #confirmPasswordInput="ngModel" placeholder="Confirmação de senha"
+                                [(ngModel)]="confirmPassword" minlength=4 maxlength=50 required>
+                            <div *ngIf="confirmPasswordInput.dirty && confirmPasswordInput.invalid">
+                                <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.required">
+                                    A Confirmação de senha é obrigatório
+                                </small>
+                                <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.minlength">
+                                    Sua Confirmação de senha deve ter pelo menos 4 caracteres.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.maxlength">
+                                    Sua Confirmação de senha deve ter menos de 50 caracteres.
+                                </small>
+                            </div>
+                        </div>
+
+                        <button type="submit" [disabled]="registerForm.form.invalid"
+                            class="btn btn-lg btn-success btn-block">Criar conta</button>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>

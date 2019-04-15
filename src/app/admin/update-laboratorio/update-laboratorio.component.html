@@ -1,0 +1,399 @@
+
+  <mat-tab-group *ngIf="laboratorio">
+    <mat-tab label="Identificação">
+
+      <div class="row p-4">
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="Nome" name="nome" [(ngModel)]="laboratorio.nome" required>
+          </mat-form-field>
+        </div>
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="Sigla" name="sigla" [(ngModel)]="laboratorio.sigla" required>
+          </mat-form-field>
+        </div>
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="CNPJ" name="cnpj" [(ngModel)]="laboratorio.cnpj">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row p-4">
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <mat-label>Instituição</mat-label>
+            <mat-select [(ngModel)]="laboratorio.instituicaoId" name="instituicao">
+              <mat-option *ngFor="let instituicao of instituicoes" [value]="instituicao.id">
+                {{instituicao.nome}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm flexx" *ngIf="!editar"  >
+          <mat-form-field>
+            <mat-label>Coodernador</mat-label>
+            <mat-select [(ngModel)]="laboratorio.coordenadorId" name="coodernador">
+              <mat-option *ngFor="let coodernador of coordenadores" [value]="coodernador.id">
+                {{coodernador.nome}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="Site" name="site" [(ngModel)]="laboratorio.website">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+
+      <div class="row p-4">
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <textarea matInput placeholder="Descrição" name="descricao" [(ngModel)]="laboratorio.descricao"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Endereço" >
+
+
+      <div class="row p-4">
+
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="Logradouro" name="logradouro" [(ngModel)]="endereco.logradouro">
+          </mat-form-field>
+        </div>
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="Número" name="numero" [(ngModel)]="endereco.numero">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row p-4">
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="CEP" name="cep" [(ngModel)]="endereco.cep">
+          </mat-form-field>
+        </div>
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <input matInput placeholder="Bairro" name="bairro" [(ngModel)]="endereco.bairro">
+          </mat-form-field>
+        </div>
+        <div class="col-sm flexx">
+          <mat-form-field>
+            <mat-label>Cidade</mat-label>
+            <mat-select [(ngModel)]="endereco.cidadeId" name="cidade">
+              <mat-option *ngFor="let cidade of cidades" [value]="cidade.id">
+                {{cidade.nome}} / {{cidade.estadoNome}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </mat-tab>
+
+    <mat-tab label="Contato" *ngIf="laboratorio.enderecoId">
+
+      <div class="row p-4">
+        <div class="col-sm flexx">
+          <form (ngSubmit)="addEmail()" #formMail="ngForm">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Emails</mat-card-title>
+              </mat-card-header>
+              <div class="row">
+                <div class="col-sm-9 flexx ">
+                  <mat-form-field>
+                    <input matInput placeholder="E-mail" type="email" name="novoEmail"
+                      [(ngModel)]="novoEmail.endereco" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-3 flexx ">
+                  <button mat-mini-fab color="primary" [disabled]="!formMail.valid">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <mat-card-content>
+                <table class="table">
+                  <tbody>
+                    <tr *ngFor="let email of emails; let i = index">
+                      <td> {{email.endereco}} </td>
+                      <td>
+                        <a mat-icon-button color="warn" (click)="removeEmail(i)">
+                          <mat-icon>delete</mat-icon>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-card-content>
+            </mat-card>
+          </form>
+        </div>
+
+        <div class="col-sm flexx">
+          <form (ngSubmit)="addTelefone()" #formTelefone="ngForm">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Telefones</mat-card-title>
+              </mat-card-header>
+
+              <div class="row">
+                <div class="col-sm-3 flexx ">
+                  <mat-form-field>
+                    <input matInput maxlength="2" type="tel" placeholder="ddd" name="ddd"
+                      [(ngModel)]="novoTelefone.codigoArea" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 flexx ">
+                  <mat-form-field>
+                    <input matInput maxlength="9" type="tel" placeholder="Número" name="novoFone"
+                      [(ngModel)]="novoTelefone.numero" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-3 flexx ">
+                  <button mat-mini-fab color="primary" [disabled]="!formTelefone.valid">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <mat-card-content>
+
+                <table class="table">
+
+                  <tbody>
+                    <tr *ngFor="let fone of telefones; let i = index">
+                      <td> {{fone.codigoArea}} / {{fone.numero}} </td>
+                      <td>
+                        <a mat-icon-button color="warn" (click)="removeTelefone(i)">
+                          <mat-icon>delete</mat-icon>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </mat-card-content>
+            </mat-card>
+          </form>
+        </div>
+
+        <div class="col-sm flexx">
+          <form (ngSubmit)="addRedeSocial()" #formRede="ngForm">
+
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Redes sociais</mat-card-title>
+              </mat-card-header>
+
+              <div class="row">
+                <div class="col-sm-4 flexx ">
+                  <mat-select [(ngModel)]="novaRede.nome" name="redeNome" placeholder="Nome" required>
+                    <mat-option *ngFor="let rede of tiposRedes" [value]="rede">
+                      {{rede}}
+                    </mat-option>
+                  </mat-select>
+                </div>
+
+                <div class="col-sm-6 flexx ">
+                  <mat-form-field>
+                    <input matInput placeholder="Url perfil" type="url" [(ngModel)]="novaRede.url"
+                      name="novaRede" required>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-2 flexx ">
+                  <button mat-mini-fab color="primary" [disabled]="!formRede.valid">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <mat-card-content>
+
+                <table class="table">
+
+                  <tbody>
+                    <tr *ngFor="let rede of redesSociais; let i = index ">
+                      <td> {{rede.url}} </td>
+                      <td>
+                        <a mat-icon-button color="warn" (click)="removeRedeSocial(i)">
+                          <mat-icon>delete</mat-icon>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </mat-card-content>
+            </mat-card>
+          </form>
+
+        </div>
+      </div>
+
+    </mat-tab>
+    <!-- <mat-tab label="Galeria"> Galeria </mat-tab> -->
+    <mat-tab label="Caracteristicas" *ngIf="laboratorio.enderecoId">
+      <div class="row p-4">
+
+          <div class="col-sm flexx">
+              <table class="table">
+                  <thead>
+                      <tr>                      
+                        <th scope="col">Área do conhecimento</th>
+                        <th scope="col">Sub-área  do conhecimento</th>       
+                        <th scope="col">#</th>                          
+                      </tr>
+                    </thead>
+                  <tbody>
+                    <tr *ngFor="let area of laboratorio.areasConhecimentos; let i = index">
+                      <td> {{area.areaconhecimentoNome}} </td>
+                      <td> {{area.nome}} </td>
+                      <td>
+                        <button mat-icon-button color="warn"  >
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+
+        <div class="col-sm flexx">
+          <mat-list role="list">
+            <mat-list-item role="listitem">
+              <mat-checkbox [(ngModel)]="caracteristicasLab.ensino" name="ensino"> Ensino </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-checkbox [(ngModel)]="caracteristicasLab.extensao" name="extensao"> Extensão </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-checkbox [(ngModel)]="caracteristicasLab.pED" name="pED"> P&D </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <mat-checkbox [(ngModel)]="caracteristicasLab.pesquisa" name="pesquisa" > Pesquisa </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <mat-checkbox [(ngModel)]="caracteristicasLab.servicoEspecializado" name="servicoEspecializado" > Serviços especializados</mat-checkbox>
+            </mat-list-item>         
+          </mat-list>
+        </div>
+
+
+        
+
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Serviços" *ngIf="laboratorio.enderecoId" >       
+        <div class="row p-4">
+          <div class="col-sm-4 flexx">  
+              
+            <mat-card>
+                <mat-card-header>                    
+                    <mat-card-title>Adicionar novo serviço</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    
+                </mat-card-content>
+            </mat-card>          
+          </div>
+
+          <div class="col-sm-8 flexx">        
+                  
+              <mat-card>  
+                  <mat-card-header>                    
+                      <mat-card-title>Serviços adicionados</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <table class="table">
+                          <thead>
+                              <tr>                      
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descrição</th>       
+                                <th scope="col">#</th>                          
+                              </tr>
+                            </thead>
+                          <tbody>
+                            <tr *ngFor="let servico of laboratorio.ensaios; let i = index">
+                              <td> {{servico.nome}} </td>
+                              <td> {{servico.descricao}} </td>
+                              <td>
+                                <button mat-icon-button color="warn"  >
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </mat-card-content>
+              </mat-card>        
+          </div>
+
+        </div>
+    </mat-tab>
+    <mat-tab label="Membros" *ngIf="laboratorio.enderecoId"> 
+    
+        <div class="row p-4">
+            
+  
+            <div class="col-sm flexx">        
+                    
+        
+                        <table class="table">
+                            <thead>
+                                <tr>                      
+                                  <th scope="col">Membro</th>
+                                  <th scope="col">Pesquisador</th>       
+                                  <th scope="col">Email</th>       
+                                  <th scope="col">Cargo</th>             
+                                  <th scope="col">Status</th>             
+                                  <th scope="col">#</th>                                                                 
+                                </tr>
+                              </thead>
+                            <tbody>
+                              <tr *ngFor="let membro of membros; let i = index">
+                                <td> {{membro.membro.nome}} </td>
+                                <td> {{membro.pesquisador}} </td>
+                                <td> {{membro.membro.email}} </td>
+                                <td> {{membro.cargo}} </td>
+                                <td> 
+                                    <span class="badge badge-pill badge-{{(membro.status) === 'ATIVO'? 'success': 'light'}} p-2"> {{membro.status}}</span> 
+                                </td>
+                                <td>
+                                  <a mat-icon-button color="warn"  >
+                                    <mat-icon>delete</mat-icon>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                   
+            </div>
+  
+          </div>
+    
+    </mat-tab>
+    <!-- <mat-tab label="Certificações"> Certificações </mat-tab> -->
+  </mat-tab-group>
+
+ 
+<div class="col-sm flexx">    
+    <button mat-raised-button color="primary" *ngIf="editar"  (click)="atualizarLaboratorio()"  > Atualizar Laboratório</button>
+    <button mat-raised-button color="primary" *ngIf="!editar" (click)="cadastrarLaboratorio()"  > Cadastrar Laboratório</button>
+</div>

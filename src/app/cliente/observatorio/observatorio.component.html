@@ -1,0 +1,202 @@
+
+<div class="home">
+  <div class="home_background"></div>
+  <div class="background_image background_city" style="background-image:url(./assets/images/city.png); opacity: 0.1">
+  </div>
+  <div class="cloud cloud_1"><img src="./assets/images/cloud.png" alt=""></div>
+  <div class="cloud cloud_2"><img src="./assets/images/cloud.png" alt=""></div>
+  <!-- <div class="cloud cloud_3"><img src="./assets/images/cloud_full.png" alt=""></div> -->
+  <div class="cloud cloud_4"><img src="./assets/images/cloud.png" alt=""></div>
+  <div class="home_container">
+      <div class="container">
+          
+          <div class="row">
+              <div class="col-lg-10 offset-lg-1">
+                  <div class="domain_search_form_container">
+
+                    <button (click)="criarLab()"  class="domain_search_button d-flex flex-row align-items-center justify-content-center"> criar </button>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+ 
+
+
+<!-- 
+<div class="row p-5">
+  <div class="col-sm" *ngIf="laboratorios" >
+
+
+
+      <div class="card mb-3" *ngFor="let lab of laboratorios.laboratorios; let i = index" >
+          <div class="card-body">
+            <h5 class="card-title"> {{i}} -  {{lab.nome}} - {{lab.sigla}}  <span *ngIf="lab.cnpj" >(CNPJ: {{lab.cnpj}})</span> </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <span *ngFor="let cod of lab.atuacoes" >
+                <span *ngIf="cod.eCoordenador">
+                    Coordenador: {{cod.firstName}}
+                </span>
+              </span>
+            </h6>
+
+            <p class="card-text">
+              <button (click)="criarLab()" > criar </button>
+              {{lab.descricao}}
+            </p>
+
+            <p class="card-text">
+                Instituição:  {{lab.instituicaoNome}}
+            </p>
+
+
+            <p>
+                website: <a href="http://{{lab.website}} " target="_blank" >  {{lab.website}}  </a>
+            </p>
+
+            <nav class="p-2">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home{{lab.id}}" role="tab" aria-controls="nav-home" aria-selected="true">
+                    Membros
+                  </a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile{{lab.id}}" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    Endereco e Contatos
+                  </a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact{{lab.id}}" role="tab" aria-controls="nav-contact" aria-selected="false">
+                    Serviços / Caracteristicas
+                  </a>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home{{lab.id}}" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Cargo </th>
+                          <th scope="col">Nome </th>
+                          <th scope="col">CPF</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Cnpq</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let membro of lab.atuacoes" >
+                          <td > {{membro.cargo}}  </td>
+                          <td > {{membro.firstName}} {{membro.lastName}} </td>
+                          <td > {{membro.cpf}}  </td>
+                          <td > {{membro.email}}  </td>
+                          <td > <a href="http://lattes.cnpq.br/{{membro.idCNPQ}}" target="_blank" >  http://lattes.cnpq.br/{{membro.idCNPQ}}  </a>  </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="nav-profile{{lab.id}}" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                    <div class="card mb-2">
+                        <div class="card-header">
+                          Endereço
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">cep: {{lab.cep}}</li>
+                          <li class="list-group-item">logradouro: {{lab.logradouro}}</li>
+                          <li class="list-group-item">numero: {{lab.numero}}</li>
+                          <li class="list-group-item">complemento; {{lab.complemento}}</li>
+                          <li class="list-group-item">bairro: {{lab.bairro}}</li>
+                          <li class="list-group-item">cidade: {{lab.cidadeNome}} / {{lab.estadoNome}}</li>
+                          <li class="list-group-item">latitude: {{lab.latitude}}</li>
+                          <li class="list-group-item">longitude: {{lab.longitude}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="card mb-2">
+                        <div class="card-header">
+                          Telefones
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" *ngFor="let telefone of lab.telefones" >telefone:  ({{telefone.codigoArea}})  {{telefone.numero}}</li>
+                          </ul>
+                      </div>
+
+
+                      <div class="card  mb-2">
+                          <div class="card-header">
+                            Emails
+                          </div>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item" *ngFor="let email of lab.emails" >email: {{email.endereco}}</li>
+                          </ul>
+                        </div>
+
+
+                    <div class="card  mb-2">
+                        <div class="card-header">
+                          Redes sociais
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" *ngFor="let rede of lab.linksRedeSocial" >link: {{rede.link}}</li>
+                          </ul>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="nav-contact{{lab.id}}" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                    <div class="card  mb-2">
+                        <div class="card-header">
+                          Serviços
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Nome </th>
+                                <th scope="col">descricao</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let servico of lab.servicos" >
+                                <td > {{servico.nome}}  </td>
+                                <td > {{servico.descricao}}  </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+
+                      <div class="card  mb-2">
+                          <div class="card-header">
+                            Caracteristicas
+                          </div>
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Pesquisa </th>
+                                  <th scope="col">Ensino</th>
+                                  <th scope="col">Extensao</th>
+                                  <th scope="col">Serviço Especializado</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td > {{ (lab.pesquisa) ? 'sim' : 'não' }}  </td>
+                                  <td > {{ (lab.ensino) ? 'sim' : 'não' }}  </td>
+                                  <td > {{ (lab.extensao) ? 'sim' : 'não' }}  </td>
+                                  <td > {{ (lab.servicoEspecializado) ? 'sim' : 'não' }}  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                </div>
+              </div>
+
+
+          </div>
+        </div>
+
+
+
+
+  </div>
+</div>
+
+
+ -->

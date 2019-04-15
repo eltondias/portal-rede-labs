@@ -1,0 +1,12 @@
+.flexx {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-tab-body-content {
+    overflow: none;
+    background-color: aqua
+}
+
+ 

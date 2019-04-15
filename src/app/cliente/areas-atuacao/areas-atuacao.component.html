@@ -1,0 +1,33 @@
+<div class="home" *ngIf="areasAtuacao" >
+        <div class="home_background"></div>
+        <div class="background_image background_city" style="background-image:url(./assets/images/city.png); opacity: 0.1"></div>
+        <div class="home_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_content text-center p-4">
+                            <div class="home_title">
+                                    Áreas de atuação
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-sm-6 p-2" *ngFor="let area of areasAtuacao">
+                            <div class="card shadow bg-white rounded">
+                                <div class="picture" [ngStyle]="{ 'background-image': 'url(' + area.logotipoContentType + ')' }"></div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{area.nome}}</h5>
+                                    <p class="card-text">{{truncateText(area.descricao)}}</p>
+                                    <a href="#" [routerLink]="['/','lista-segmentos', area.id]"  class="btn btn-lg btn-light btn-block"> Ver segmentos </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>             
+                 
+            </div>
+        </div>
+    </div>
+

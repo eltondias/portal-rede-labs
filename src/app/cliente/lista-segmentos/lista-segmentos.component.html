@@ -1,0 +1,59 @@
+<!-- <div class="team">
+		<div class="container">
+			 
+			<div class="row team_row">
+				
+			
+				<div class="col-xl-3 col-md-6 team_col magic_fade_in">
+					<div class="team_item">
+						<div class="team_image"><img src="./assets/images/team_1.jpg" alt=""></div>
+						<div class="team_content">
+							<div class="team_name"><a href="#">Michael Smith</a></div>
+							<div class="team_title">Administrator</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div> -->
+
+
+
+
+<div class="home" *ngIf="areaAtuacao">
+  <div class="home_background"></div>
+  <div class="background_image background_city"
+    [ngStyle]="{ 'background-image': 'url(' + areaAtuacao.logotipoContentType + ')' }" style="opacity: 0.1"></div>
+
+  <div class="home_container" *ngIf="areaAtuacao">
+    <div class="container">
+      <div class="row p-4">
+        <div class="col">
+          <div class="home_content text-center">
+            <div class="home_title">Segmento {{areaAtuacao.nome}}</div>
+            <!-- <div class="home_text">
+                            {{truncateText(area.descricao)}}
+                    </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="segmentos">
+        <div class="col-sm-6 p-2" *ngFor="let segmento of segmentos">
+          <div class="card shadow bg-white rounded">
+            <!-- <div class="picture" [ngStyle]="{ 'background-image': 'url(data:' + segmento.logotipoContentType + ';base64,' + segmento.logotipo + ')' }"></div> -->
+            <div class="card-body">
+              <h5 class="card-title">{{segmento.nome}}</h5>
+              <p class="card-text">{{truncateText(segmento.descricao)}}</p>
+              <a href="#" [routerLink]="['/', 'servicos-segmento', segmento.id]"
+                class="btn btn-lg btn-light btn-block">Ver
+                serviços </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

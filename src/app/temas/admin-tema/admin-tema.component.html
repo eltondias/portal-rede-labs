@@ -1,0 +1,72 @@
+
+
+<mat-sidenav-container (backdropClick)="close()" style="height: 100%;">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose >
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col-12 logo">
+        </div>
+      </div>
+    </div> -->
+
+    <div class="list-group list-group-flush">
+        <a routerLink='/admin/dashboard' (click)="close()" [routerLinkActive]="['active']" class="list-group-item list-group-item-action">
+          <mat-icon>dashboard</mat-icon>
+          <span class="label-link">Painel de controle</span>
+        </a>
+
+        <a routerLink='/admin/lista-laboratorios' (click)="close()" [routerLinkActive]="['active']" class="list-group-item list-group-item-action">
+          <mat-icon>domain</mat-icon>
+          <span class="label-link">Laboratórios</span>
+        </a>
+
+        <!-- <a routerLink='/admin/gerenciar-fluxos' (click)="close()" [routerLinkActive]="['active']" class="list-group-item list-group-item-action">
+          <mat-icon>call_split</mat-icon>
+          <span class="label-link">Fluxos</span>
+        </a> -->
+
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="shadow mb-1">
+      <mat-toolbar-row>
+        <span>
+
+          <button mat-icon-button (click)="open(paginaAtual.back)">
+            <mat-icon>{{paginaAtual.icon}}</mat-icon>
+          </button>
+
+
+          <span  style="margin-left: 8px" > {{paginaAtual.header}} </span>
+
+        </span>
+        <span class="example-fill-remaining-space"></span>
+
+        <span>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                  <a mat-menu-item href="/" target="_blanck" matTooltip="Ver blog">
+                      <mat-icon>open_in_new</mat-icon>
+                      <span>Ir para o app</span>
+                    </a>
+                <button mat-menu-item>
+                  <mat-icon>person</mat-icon>
+                  <span>Perfil suário</span>
+                </button>
+                <button mat-menu-item (click)="signOut()">
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span>Logout</span>
+                </button>
+              </mat-menu>
+
+          </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+            <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

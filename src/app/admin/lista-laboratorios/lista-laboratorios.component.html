@@ -1,0 +1,60 @@
+<div class=" p-4">
+
+
+  <mat-card>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <!-- <mat-icon>local_post_office</mat-icon> -->
+        <span style="margin-left: 8px"> Meus laboratórios </span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button (click)="cadastrarLaboratorio()" >
+          <mat-icon>add_box</mat-icon>
+        </button>      
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <table class="table" *ngIf="laboratorios">
+      <thead>
+        <tr >
+        
+          <th scope="col">Nome</th>
+          <th scope="col">Sigla </th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Website</th>
+          <th scope="col">Status </th>
+          <th scope="col">Instituição</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let lab of laboratorios">                      
+          <td> {{lab.nome}}</td>
+          <td> {{lab.sigla}}</td>
+          <td> {{lab.descricao}}</td>
+          <td> {{lab.website}}</td>
+          <td> {{lab.status}}</td>              
+          <td> {{lab.instituicaoSigla}}</td>    
+          <td>
+              <button mat-icon-button color="primary" (click)="editar(lab)"  >
+                  <mat-icon>edit</mat-icon>
+                </button>
+          </td>
+          <td>
+              <button mat-icon-button color="warn" (click)="deleteLab(lab)" >
+                  <mat-icon>delete</mat-icon>
+                </button>
+          </td>
+        </tr>                                 
+      </tbody>
+    </table>
+  </mat-card>
+
+
+
+
+
+
+</div>
+
+
+ 

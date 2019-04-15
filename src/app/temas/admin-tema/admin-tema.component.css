@@ -1,0 +1,47 @@
+.logo {
+    height: 220px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('/assets/images/logo.png');
+    background-image: url('/assets/images/logo.jpeg');
+}
+
+.example-container {
+  width: 100%;
+  margin-top: 0px;
+  border: 0px solid #555;
+  padding-right: 10px
+}
+
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #3f51b5;
+   border-color: #3f51b5;
+}
+
+.label-link {
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.mat-toolbar.mat-accent {
+  position: fixed;
+  z-index: 1000000;
+}
+
+
+.mat-drawer-content {
+  background-color: white;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  z-index: 10000 !important;
+}

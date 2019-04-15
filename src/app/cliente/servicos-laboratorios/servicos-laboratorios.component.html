@@ -1,0 +1,53 @@
+<div class="home">
+  <div class="home_background"></div>
+  <div class="background_image background_city" style="background-image:url(./assets/images/labs.jpg); opacity: 0.1">
+  </div>
+  <!-- <div class="cloud cloud_1"><img src="./assets/images/cloud.png" alt=""></div>
+    <div class="cloud cloud_2"><img src="./assets/images/cloud.png" alt=""></div>
+    <div class="cloud cloud_3"><img src="./assets/images/cloud_full.png" alt=""></div>
+    <div class="cloud cloud_4"><img src="./assets/images/cloud.png" alt=""></div> -->
+  <div class="home_container">
+    <div class="container" *ngIf="segmento">
+      <div class="row p-4">
+        <div class="col">
+          <div class="home_content text-center">
+            <div class="home_title">{{segmento.nome}}</div>
+            <div class="home_text">{{segmento.descricao}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+
+        <div class="col-sm">
+          <table class="table table-bordered table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Laboratórios</th>
+                <th scope="col" *ngFor="let servico of servicos" title="{{servico.nome}}">{{truncateText(servico.nome)}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let laboratorio of newListLabs">
+                <td scope="row">
+                  <button type="button" [title]="laboratorio.descricao" class="btn btn-warning"
+                    [routerLink]="['/laboratorio-page/' + laboratorio.id ]" routerLinkActive="router-link-active">
+                    {{laboratorio.sigla}}
+                  </button>
+                </td>
+                <td *ngFor="let ensaio of laboratorio.ensaios"> <img width="32px" *ngIf="ensaio !== undefined"
+                  src="./assets/images/check.png"  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
