@@ -50,14 +50,19 @@ export class AppModule {
     private http: HttpClient
   ) {
 
-    if (this.authToken === null ) {    
-      this.http.post<any[]>(environment.urlApiSistemaInterno +  'authenticate', {'password': 'admin', 'rememberMe': true, 'username': 'admin'
-      }).subscribe((token: any) => {
-        localStorage.setItem('auth_token', token.id_token);
-      });
-    } else if(!<boolean>this.logado) {
-      localStorage.setItem('auth_token', this.authTokenAdmin);
-    }
+    this.http.post<any[]>(environment.urlApiSistemaInterno +  'authenticate', {'password': 'admin', 'rememberMe': true, 'username': 'admin'
+    }).subscribe((token: any) => {
+      localStorage.setItem('auth_token', token.id_token);
+    });
+
+    // if (this.authToken === null ) {    
+    //   this.http.post<any[]>(environment.urlApiSistemaInterno +  'authenticate', {'password': 'admin', 'rememberMe': true, 'username': 'admin'
+    //   }).subscribe((token: any) => {
+    //     localStorage.setItem('auth_token', token.id_token);
+    //   });
+    // } else if(!<boolean>this.logado) {
+    //   localStorage.setItem('auth_token', this.authTokenAdmin);
+    // }
 
   }
 }

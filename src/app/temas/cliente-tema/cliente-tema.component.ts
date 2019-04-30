@@ -16,18 +16,18 @@ export class ClienteTemaComponent implements OnInit {
   ngOnInit() {
   }
 
-  abrirAutenticacao() {
+  // abrirAutenticacao() {
 
 
-    this._router.navigateByUrl('/autenticacao/login');
+  //   this._router.navigateByUrl('/autenticacao/login');
 
-    // const dialogRef = this.dialog.open(AutenticarComponent, {
-    //   data: {}
-    // });
+  //   // const dialogRef = this.dialog.open(AutenticarComponent, {
+  //   //   data: {}
+  //   // });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //    console.log(result);
-    // });
-  }
+  //   // dialogRef.afterClosed().subscribe(result => {
+  //   //    console.log(result);
+  //   // });
+  // }
 
 }

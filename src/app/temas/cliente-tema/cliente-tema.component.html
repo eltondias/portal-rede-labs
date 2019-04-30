@@ -8,24 +8,42 @@
                 <div class="col">
                     <div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
                         <div class="logo">
-                            <a [routerLink]="['/home']">
+                            <!-- <a [routerLink]="['/home']">
                                 <img src="./assets/images/logo.png" width="284px">
+                            </a> -->
+                            <a [routerLink]="['/home']">
+                                <div class="footer_logo">REDE BIOTEC<span> AMAZÔNIA</span>
+                                    <p class="text-white" style="font-size: 12px;">
+                                            Rede de Laboratórios para a Bioeconomia da Amazônia
+                                        </p>
+                                </div>
+                        
                             </a>
                         </div>
                         <nav class="main_nav ml-auto mr-auto">
                             <ul class="d-flex flex-row align-items-center justify-content-start">
-                                <li routerLinkActive="active"><a [routerLink]="['/home']">Inicio</a></li>
-                                <li routerLinkActive="active"><a [routerLink]="['/areas-atuacao']">Áreas de atuação</a>
+                                    <li routerLinkActive="active"><a [routerLink]="['/sobre']">Sobre</a></li>
+                                <li routerLinkActive="active"><a [routerLink]="['/areas-atuacao']">Áreas de Atuação</a>
                                 </li>
-                                <li routerLinkActive="active"><a [routerLink]="['/servicos']">Serviços/Laboratórios</a>
+                                <li routerLinkActive="active"><a [routerLink]="['/servicos']">Serviços</a>
+                                </li>
+
+                                <li routerLinkActive="active">
+                                        <a [routerLink]="['/autenticacao/login']">Entrar</a>
                                 </li>
                             </ul>
                         </nav>
                         <div class="log_reg">
                             <div class="log_reg_content d-flex flex-row align-items-center justify-content-start">
-                                <div class="login log_reg_text"><a href="javascript:void(0)"
-                                        (click)="abrirAutenticacao()">Entrar</a></div>
-                                <div class="register log_reg_text"><a [routerLink]="['/nova-conta']">Registrar</a></div>
+                                <div class="login log_reg_text">                                 
+                                    
+                                    <a [routerLink]="['/nova-conta']" class="btn btn-info">
+                                        CADASTRAR LABORATÓRIO
+                                    </a>
+                                </div>
+                                <!-- <div class="register log_reg_text">
+                                    <a [routerLink]="['/nova-conta']" class="btn btn-success" >Registrar</a>
+                                </div> -->
                             </div>
                         </div>
                         <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
@@ -47,19 +65,17 @@
         </div>
         <div class="log_reg">
             <div class="log_reg_content d-flex flex-row align-items-center justify-content-end">
-                    <div class="login log_reg_text"><a href="javascript:void(0)"
-                        (click)="abrirAutenticacao()">Entrar</a></div>
-                <div class="register log_reg_text"><a [routerLink]="['/nova-conta']">Registrar</a></div>
+                    <div class="login log_reg_text">
+                            <a [routerLink]="['/autenticacao/login']">Entrar</a>                    
+                    </div>                
             </div>
         </div>
         <nav class="menu_nav">
             <ul>
-                    <li routerLinkActive="active"><a [routerLink]="['/home']">Inicio</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/sobre']">Sobre</a></li>
                     <li routerLinkActive="active"><a [routerLink]="['/areas-atuacao']">Áreas de atuação</a></li>
-                    <li routerLinkActive="active"><a [routerLink]="['/servicos']">Serviços/Laboratórios</a></li>
-                    <!-- <li> <a href="javascript:void(0)" (click)="abrirAutenticacao()">Entrar</a></li>
-                    <li routerLinkActive="active"><a [routerLink]="['/nova-conta']">Registrar</a></li> -->
-
+                    <li routerLinkActive="active"><a [routerLink]="['/servicos']">Serviços/Laboratórios</a></li>                   
+                    <li routerLinkActive="active"><a [routerLink]="['/nova-conta']">Registrar</a></li>
             </ul>
         </nav>
     </div>
@@ -72,103 +88,121 @@
 
     <!-- Footer -->
 
-    <!-- <footer class="footer magic_fade_in">
+    <footer class="footer magic_fade_in">
         <div class="container">
             <div class="row">
 
+                    <div class="col-lg-6 footer_col">
+                            <div class="footer_links">
+                                <div class="row">
+                                    <div class="col-sm-6 footer_list_col magic_fade_in">
+                                        <div class="footer_list_container">
+                                            <div class="footer_list_title">
+                                                Menu
+                                            </div>
+                                            <ul class="footer_list">
+                                                    <li routerLinkActive="active"><a href="/home">Início</a></li>
+                                                    <li routerLinkActive="active"><a href="/areas-atuacao">Áreas de atuação</a></li>
+                                                    <li routerLinkActive="active"><a href="/servicos">Serviços/Laboratórios</a></li>                   
+                                                    <li routerLinkActive="active"><a href="/nova-conta" class="btn btn-info" > Cadastrar laboratório </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 footer_list_col magic_fade_in">
+                                        <div class="footer_list_container">
+                                            <div class="footer_list_title mb-2">Entrar </div>
+                                            <app-login [naoChecar] ="true" ></app-login>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+        
+
                 <div class="col-lg-6 footer_col magic_fade_in">
                     <div class="footer_about">
-                        <div class="footer_logo">Host<span>Space</span></div>
-                        <div class="copyright">
-
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
-
+                            <div class="footer_list_title">
+                            Onde estamos
                         </div>
-                        <div class="footer_text">
-                            <p>Nullam lacinia ex eleifend orci porttitor, suscipit interdum augue condimentum. Etiam
-                                pretium turpis eget nibh laoreet iaculis. Nullam lacinia ex eleifend orci porttitor,
-                                suscipit interdum augue condimentum. Etiam pretium turpis eget nibh laoreet iaculis.</p>
-                        </div>
+                                                 
                         <div class="contact_container">
-                            <form action="#" id="contact_form" class="contact_form">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" class="contact_input" placeholder="Your Name"
-                                            required="required">
+                
+                                <div class="row mb-4">
+                                    <div class="col-sm"> 
+                                            <div class="card">
+                                                    <img src="/src/assets/images/localizacao.PNG" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Espaço Empreendedor</h5>
+                                                        <p class="card-text">
+                                                                Av. Perimetral da Ciência s/n, Km 1
+                                                                Parque de Ciência e Tecnologia Guamá  
+                                                                Prédio Espaço Empreendedor,
+                                                                3º andar, salas 401 a 404.  
+                                                                Tel: (91) 98461-7941
+                                                            
+                                                        </p>
+                                                        <a href="https://www.google.com/maps/place/Parque+de+Ci%C3%AAncia+e+Tecnologia+Guam%C3%A1/@-1.4628657,-48.4463804,18z/data=!4m5!3m4!1s0x0:0xfc8f380776e8b79b!8m2!3d-1.462673!4d-48.445903?hl=pt-BR"
+                                                            target="_blank" class="btn btn-link btn-lg btn-block">
+                    
+                                                            veja no mapa
+                    
+                                                        </a>
+                                                    </div>
+                                                </div>
+                    
+                                                                      
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="email" class="contact_input" placeholder="Your e-mail"
-                                            required="required">
+                                    <div class="col-sm">
+                                            <div class="card">
+                                                    <img src="/src/assets/images/localizacao2.PNG" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Escritório de Articulação</h5>
+                                                        <p class="card-text">
+                                                                FIEPA – Tv. Quintino Bocaiúva, nº 1588, 4º andar, Bloco A
+                                                                Tel: (91) 4009-4799                                                           
+                                                        </p>
+                                                        <a href="https://www.google.com.br/maps/place/FIEPA/@-1.4536657,-48.4884268,17z/data=!3m1!4b1!4m5!3m4!1s0x92a48e851d8190cb:0x3ac9bbb3eb24c7ee!8m2!3d-1.4536711!4d-48.4862381"
+                                                            target="_blank" class="btn btn-link btn-lg btn-block">
+                    
+                                                            veja no mapa
+                    
+                                                        </a>
+                                                    </div>
+                                                </div>
                                     </div>
+                                 
                                 </div>
-                                <div>
-                                    <textarea class="contact_input contact_textarea" placeholder="Message"
-                                        required="required"></textarea>
-                                </div>
-                                <button class="contact_button">Send</button>
-                            </form>
+                        
+                                <!-- <div class="row">
+                                         
+                                        <div class="col-sm">
+                                                <div class="card">
+                                                        <img src="/src/assets/images/localizacao2.PNG" class="card-img-top" alt="...">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Escritório de Articulação</h5>
+                                                            <p class="card-text">
+                                                                    FIEPA – Tv. Quintino Bocaiúva, nº 1588, 4º andar, Bloco A
+                                                                    Tel: (91) 4009-4799                                                           
+                                                            </p>
+                                                            <a href="https://www.google.com.br/maps/place/FIEPA/@-1.4536657,-48.4884268,17z/data=!3m1!4b1!4m5!3m4!1s0x92a48e851d8190cb:0x3ac9bbb3eb24c7ee!8m2!3d-1.4536711!4d-48.4862381"
+                                                                target="_blank" class="btn btn-link btn-lg btn-block">
+                        
+                                                                veja no mapa
+                        
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                        </div>
+                                    </div> -->
+                             
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-6 footer_col">
-                    <div class="footer_links">
-                        <div class="row">
-                            <div class="col-sm-6 footer_list_col magic_fade_in">
-                                <div class="footer_list_container">
-                                    <div class="footer_list_title">Hosting Options</div>
-                                    <ul class="footer_list">
-                                        <li><a href="#">Web Hosting</a></li>
-                                        <li><a href="#">WordPress Hosting</a></li>
-                                        <li><a href="#">VPS Hosting</a></li>
-                                        <li><a href="#">Cloud Server</a></li>
-                                        <li><a href="#">Reseller Package</a></li>
-                                        <li><a href="#">Dedicated Hosting</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 footer_list_col magic_fade_in">
-                                <div class="footer_list_container">
-                                    <div class="footer_list_title">Domains</div>
-                                    <ul class="footer_list">
-                                        <li><a href="#">Buy a Domain</a></li>
-                                        <li><a href="#">Premium Domain Names</a></li>
-                                        <li><a href="#">Web Hosting</a></li>
-                                        <li><a href="#">Transfer Your Domain</a></li>
-                                        <li><a href="#">Domain Marketplace</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 footer_list_col magic_fade_in">
-                                <div class="footer_list_container">
-                                    <div class="footer_list_title">Resellers</div>
-                                    <ul class="footer_list">
-                                        <li><a href="#">VPS Hosting</a></li>
-                                        <li><a href="#">Cloud Server</a></li>
-                                        <li><a href="#">Reseller Package</a></li>
-                                        <li><a href="#">Dedicated Hosting</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 footer_list_col magic_fade_in">
-                                <div class="footer_list_container">
-                                    <div class="footer_list_title">Support</div>
-                                    <ul class="footer_list">
-                                        <li><a href="#">Buy a Domain</a></li>
-                                        <li><a href="#">Premium Domain Names</a></li>
-                                        <li><a href="#">Web Hosting</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+             
             </div>
         </div>
-    </footer> -->
+    </footer>
 
 </div>

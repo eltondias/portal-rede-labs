@@ -281,7 +281,7 @@ section
 }
 .header.scrolled
 {
-	background: #200e35;
+	background: #004a44;
 	padding-top: 6px;
 }
 .header_content
@@ -308,9 +308,10 @@ section
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
-	background-color: white;
+	/* background-color: white; */
 	padding: 10px;
-    border-radius: 10px;
+	border-radius: 10px;
+	font-size: 20px;
 }
 .logo a
 {
@@ -612,7 +613,7 @@ section
 }
 .home_title
 {
-	font-size: 50px;
+	font-size: 30px;
 	font-weight: 600;
 	color: #FFFFFF;
 	line-height: 1.2;
@@ -651,38 +652,32 @@ section
 	outline: none;
 	padding-left: 30px;
 	font-size: 24px;
-	font-weight: 500;
-	color: #1f1d22;
+	font-weight: 500;	
 }
 .domain_search_input::-webkit-input-placeholder
 {
 	font-size: 24px !important;
 	font-weight: 500 !important;
-	color: #1f1d22 !important;
 }
 .domain_search_input:-moz-placeholder
 {
 	font-size: 24px !important;
 	font-weight: 500 !important;
-	color: #1f1d22 !important;
 }
 .domain_search_input::-moz-placeholder
 {
 	font-size: 24px !important;
 	font-weight: 500 !important;
-	color: #1f1d22 !important;
 } 
 .domain_search_input:-ms-input-placeholder
 { 
 	font-size: 24px !important;
 	font-weight: 500 !important;
-	color: #1f1d22 !important;
 }
 .domain_search_input::input-placeholder
 {
 	font-size: 24px !important;
 	font-weight: 500 !important;
-	color: #1f1d22 !important;
 }
 .domain_search_dropdown
 {
@@ -1226,17 +1221,25 @@ section
 .footer
 {
 	width: 100%;
-	background: #26064c;
+	background: #004a44;
 	padding-top: 95px;
 	padding-bottom: 95px;
 }
 .footer_logo
 {
-	font-size: 47px;
+	font-size: 20px;
 	color: #FFFFFF;
 	font-weight: 600;
 	line-height: 0.75;
 }
+
+.footer_logo .p
+{
+	font-size: 10px;
+	color: #FFFFFF;
+ 
+}
+
 .footer_logo span
 {
 	color: #1befc5;

@@ -8,7 +8,7 @@ export const environment = {
     storageBucket: "",
     messagingSenderId: "537459781115"
   },
-  //urlApiSistemaInterno: 'http://rededelabolatorios-env.h7qiim6mwv.sa-east-1.elasticbeanstalk.com/api/',
-  urlApiSistemaInterno: 'http://localhost:8084/api/',
+  urlApiSistemaInterno: 'http://rededelabolatorios-env.h7qiim6mwv.sa-east-1.elasticbeanstalk.com/api/',
+  // urlApiSistemaInterno: 'http://localhost:8084/api/',
   urlApiCNPJ: 'https://us-central1-api-cnpj.cloudfunctions.net/getCnpj/',
 };

@@ -18,6 +18,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ServicosLaboratoriosComponent } from './cliente/servicos-laboratorios/servicos-laboratorios.component';
 import { ObservatorioComponent } from './cliente/observatorio/observatorio.component';
 import { UpdateLaboratorioComponent } from './admin/update-laboratorio/update-laboratorio.component';
+import { SobreComponent } from './cliente/sobre/sobre.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent, data: { preload: true } },
+      { path: 'sobre', component: SobreComponent, data: { preload: true } },
       { path: 'areas-atuacao', component: AreasAtuacaoComponent, data: { preload: true } },
       { path: 'lista-segmentos/:id', component: ListaSegmentosComponent, data: { preload: true } },
       { path: 'servicos-segmento/:id', component: ServicosLaboratoriosComponent },

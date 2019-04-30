@@ -3,7 +3,7 @@
   </div>
 
 
-<div class="text-center bg" >
+<div class="text-center bg" *ngIf="!naoChecar" >
 
   
   <div class="row justify-content-center">
@@ -57,5 +57,30 @@
 
 </div>
 
+
+
+<form class="form" role="form" (ngSubmit)="login()" *ngIf="naoChecar" >
+        <div class="form-group">
+          
+            <label class="username-label" for="username" >
+                <span >E-Mail</span>
+                <span  > ou </span>
+                <span  >Cpf</span>
+                <span  > ou </span>
+                <span  >Login</span>
+
+            </label>
+            <input type="text" class="form-control" name="username" id="username" placeholder=" usuário"
+                   [(ngModel)]="username">
+
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Senha"
+                   [(ngModel)]="password">
+        </div>
+       
+        <button type="submit" class="btn btn-primary btn-block mb-2 "> Entrar </button>
+    </form>
 
 

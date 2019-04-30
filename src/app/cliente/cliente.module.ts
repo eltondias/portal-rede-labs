@@ -16,6 +16,7 @@ import { NovaContaComponent } from './nova-conta/nova-conta.component';
 import { AutenticarComponent } from './autenticar/autenticar.component';
 import { AtivacaoComponent } from './ativacao/ativacao.component';
 import { ObservatorioComponent } from './observatorio/observatorio.component';
+import { SobreComponent } from './sobre/sobre.component';
 
 @NgModule({
   imports: [
@@ -40,9 +41,10 @@ import { ObservatorioComponent } from './observatorio/observatorio.component';
       AutenticarComponent,
       AtivacaoComponent,
       ObservatorioComponent,
+      SobreComponent,
           ],
   exports:  [
-    HomeComponent
+    HomeComponent, AutenticarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

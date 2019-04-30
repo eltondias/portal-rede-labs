@@ -23,6 +23,7 @@ export class ListaSegmentosComponent implements OnInit {
           this.api.getAreaDeAtuacao(params.id).subscribe(areaAtuacao => {
               localStorage.setItem('idAreaAtuacao', params.id);
               this.areaAtuacao = <AreaDeAtuacao>areaAtuacao;
+              console.log(this.areaAtuacao)
           });
 
           this.api.getSegmentosAreaAtuacao(params.id).subscribe(segmentos => {

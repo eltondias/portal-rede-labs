@@ -17,11 +17,12 @@ export class AreasAtuacaoComponent implements OnInit {
       // this.utilService.preload.emit({ativar: true, texto: 'carregando...'});
       this.api.getAreasDeAtuacao().subscribe(areasAtuacao => {
           this.areasAtuacao = areasAtuacao;
+          console.log(this.areasAtuacao )
       });
   }
 
   truncateText(texto: String) {
-      const tamanho = 80;
+      const tamanho = 50;
       const nText = texto.length - tamanho < 0 ? texto.length : tamanho;
 
       let novoTexto = '';

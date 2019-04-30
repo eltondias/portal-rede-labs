@@ -1,5 +1,5 @@
 import { ApiService } from './../../services/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -18,13 +18,16 @@ export class LoginComponent implements OnInit {
   username: string;
   credentials: any;
 
+  @Input() naoChecar = false;
+
   constructor(
     private _router: Router,
     private api: ApiService
   ) { }
 
   ngOnInit() {
-    this.checkLogin();
+    if (!this.naoChecar)
+      this.checkLogin();
   }
 
   checkLogin() {
