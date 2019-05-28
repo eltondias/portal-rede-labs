@@ -39,7 +39,7 @@ export class ApiService {
     }
 
     getLaboratorios(): Observable<any[]> {
-        return this.http.get<any[]>(this.URL_API + 'laboratorios');
+        return this.http.get<any[]>(this.URL_API + 'laboratorios' + '?page=0&size=1000&sort=id,asc');
     }
 
     getLaboratorio(id): Observable<any[]> {

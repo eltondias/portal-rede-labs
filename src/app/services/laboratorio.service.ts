@@ -30,7 +30,7 @@ export class LaboratorioService {
 
 
   getLaboratorios(usuario: Account): Observable<any[]> {
-    return this.http.get<any[]>(this.URL_API + 'laboratorios/user?=id=' + usuario.id + '&id=' + usuario.id + '&page=0&size=20&sort=id,asc');
+    return this.http.get<any[]>(this.URL_API + 'laboratorios/user?=id=' + usuario.id + '&id=' + usuario.id + '&page=0&size=1000&sort=id,asc');
   }
 
 }
